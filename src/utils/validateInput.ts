@@ -3,7 +3,6 @@ export interface ValidationStatus {
   errMessage: string;
 }
 
-
 export const validateInput = (
   inputValue: string,
   type: 'Name' | 'Number',

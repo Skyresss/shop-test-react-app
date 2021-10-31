@@ -1,7 +1,6 @@
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { Container } from './styles';
 import Card from '../Card';
-import BuyCheapestButton from '../BuyCheapestButton';
 
 const CardList: React.FC = () => {
   const { cardsInfo } = useTypedSelector((state) => state.cards);
