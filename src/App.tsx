@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchCards } from './state';
+import styled from 'styled-components';
+import CardList from './components/CardList';
+import BuyCheapestButton from './components/BuyCheapestButton';
+import GlobalStyle from './theme/GlobalStyle';
 
-function App() {
+const MainWrapper = styled.div`
+  max-width: 1176px;
+  margin: auto;
+  margin-top: 100px;
+
+  @media only screen and (max-width: 450px) {
+    max-width: 450px;
+    margin-top: 20px;
+  }
+`;
+
+const App: React.FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    try {
+      dispatch(fetchCards());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainWrapper>
+      <GlobalStyle />
+      <CardList />
+      <BuyCheapestButton />
+    </MainWrapper>
   );
-}
+};
 
 export default App;
